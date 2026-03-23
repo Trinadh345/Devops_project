@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "trinadhbasva/devops-app"
+        DOCKER_IMAGE = "trinadhbasva/devops-app:latest"
     }
 
     stages {
@@ -30,7 +30,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 5000:5000 $DOCKER_IMAGE'
+                sh 'docker run -d -p 5001:5000 $DOCKER_IMAGE'
             }
         }
     }
