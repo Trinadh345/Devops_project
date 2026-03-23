@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "trinadhbasva/devops-app:latest"
+        DOCKER_IMAGE = "your-username/devops-app"
     }
 
     stages {
 
         stage('Clone Code') {
             steps {
-                git 'https://github.com/Trinadh345/Devops_project.git'
+                git 'https://github.com/your-repo.git'
             }
         }
 
@@ -28,9 +28,12 @@ pipeline {
             }
         }
 
-        stage('Run Container') {
+        stage('Deploy to Kubernetes') {
             steps {
-                sh 'docker run -d -p 5001:5000 $DOCKER_IMAGE'
+                sh '''
+                kubectl apply -f deployment.yaml
+                kubectl apply -f service.yaml
+                '''
             }
         }
     }
